@@ -1,2 +1,0 @@
-import KNN
-KNN.handwritingClassTest()
