@@ -27,7 +27,7 @@ def img2vector(filename):
 
 def handwritingClassTest():
     hwLabels = []
-    trainingFileList = listdir('trainingDigits')           #load the training set
+    trainingFileList = listdir('trainingDigits')           #加载训练集
     m = len(trainingFileList)
     trainingMat = zeros((m,1024))
     for i in range(m):
@@ -36,12 +36,12 @@ def handwritingClassTest():
         classNumStr = int(fileStr.split('_')[0])
         hwLabels.append(classNumStr)
         trainingMat[i,:] = img2vector('trainingDigits/%s' % fileNameStr)
-    testFileList = listdir('testDigits')        #iterate through the test set
+    testFileList = listdir('testDigits')        #加载测试集
     errorCount = 0.0
     mTest = len(testFileList)
     for i in range(mTest):
         fileNameStr = testFileList[i]
-        fileStr = fileNameStr.split('.')[0]     #take off .txt
+        fileStr = fileNameStr.split('.')[0]     #以.作为划分字符
         classNumStr = int(fileStr.split('_')[0])
         vectorUnderTest = img2vector('testDigits/%s' % fileNameStr)
         classifierResult = classify0(vectorUnderTest, trainingMat, hwLabels, 3)
